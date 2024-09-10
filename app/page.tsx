@@ -3,17 +3,40 @@ import confetti from "canvas-confetti";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
+import { Download, Github } from "lucide-react";
 import Link from "next/link";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function Home() {
   // Default data for event details, todo items, and key highlights
-  const defaultSelectedDate = new Date(new Date().setSeconds(new Date().getSeconds() + 30));
-  const defaultEventDetails = "Join us for a nude New Year's Eve celebration, where full nudity is required for participation.";
-  const defaultTodoItems = ["Create guest list", "Book the venue", "Send out invitations"];
-  const defaultKeyHighlights = ["Celebrate New Year's Eve", "Midnight fireworks display", "Exclusive nude gathering"];
+  const defaultSelectedDate = new Date(
+    new Date().setSeconds(new Date().getSeconds() + 30)
+  );
+  const defaultEventDetails =
+    "Join us for a nude New Year's Eve celebration, where full nudity is required for participation.";
+  const defaultTodoItems = [
+    "Create guest list",
+    "Book the venue",
+    "Send out invitations",
+  ];
+  const defaultKeyHighlights = [
+    "Celebrate New Year's Eve",
+    "Midnight fireworks display",
+    "Exclusive nude gathering",
+  ];
 
-  const [selectedDate, setSelectedDate] = useState<Date | null>(defaultSelectedDate);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(
+    defaultSelectedDate
+  );
 
   // Timer calculation
   const [days, setDays] = useState(0);
@@ -21,16 +44,14 @@ export default function Home() {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
- 
-
   useEffect(() => {
     const handleConfetti = () => {
       const end = Date.now() + 3 * 1000; // 3 seconds
       const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"];
-   
+
       const frame = () => {
         if (Date.now() > end) return;
-   
+
         confetti({
           particleCount: 2,
           angle: 60,
@@ -47,10 +68,10 @@ export default function Home() {
           origin: { x: 1, y: 0.5 },
           colors: colors,
         });
-   
+
         requestAnimationFrame(frame);
       };
-   
+
       frame();
     };
 
@@ -75,7 +96,9 @@ export default function Home() {
         setSeconds(seconds);
 
         if (distance < 0) {
-          setSelectedDate(new Date(selectedDate.setSeconds(selectedDate.getSeconds() + 30))); // Increase selectedDate by 30 seconds
+          setSelectedDate(
+            new Date(selectedDate.setSeconds(selectedDate.getSeconds() + 30))
+          ); // Increase selectedDate by 30 seconds
           clearInterval(interval);
           handleConfetti(); // Call handleConfetti when the timer ends
         }
@@ -149,13 +172,46 @@ export default function Home() {
           </div>
         )}
       </div>
-      <Link href={"https://download-directory.github.io/?url=https://github.com/SkidGod4444/Evently/tree/main/evently-os&filename=evently-os"}>
-      <Button variant="outline" className=" text-left font-normal mt-8">
-        <Download className="mr-1 h-4 w-4 -translate-x-1" />
-        Download Evently OS
-      </Button>
-      </Link>
-      <p>Download the evently chromium extension.</p>
+      <Dialog>
+        <DialogTrigger>
+          <Button variant="outline" className=" text-left font-normal mt-8">
+            <Download className="mr-1 h-4 w-4 -translate-x-1" />
+            Download Evently OS
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px] bg-primary blur-xs">
+          <DialogHeader>
+            <DialogTitle>Download Evently OS</DialogTitle>
+            <DialogDescription>
+              Make sure to read the{" "}
+              <Link href="" className="underline font-bold">
+                installation instructions
+              </Link>
+              {" "}
+              before downloading.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Link href={"https://git.new/ESRt29k#readme"}>
+             <Button variant={"secondary"}>
+                <Github className="mr-1 h-4 w-4 -translate-x-1" />
+                Installation Doc
+              </Button>
+            </Link>
+            <Link
+              href={
+                "https://download-directory.github.io/?url=https://github.com/SkidGod4444/Evently/tree/main/evently-os&filename=evently-os"
+              }
+            >
+              <Button variant={"secondary"}>
+                <Download className="mr-1 h-4 w-4 -translate-x-1" />
+                Download
+              </Button>
+            </Link>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <p>Download the evently chromium extension & see magic.</p>
     </div>
   );
 }
