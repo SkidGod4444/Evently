@@ -197,7 +197,7 @@ export default function EventlyOs() {
       {/* Event Details and Key Highlights/Todo List Display */}
       <div className="mt-10 w-full max-w-2xl p-6">
         <h2 className="text-3xl mb-2 text-white/30 font-bold">Event Details</h2>
-        {eventDetails !== "" ? (
+        {eventDetails ? (
           <p className="mb-6 text-white/50 font-semibold text-sm">
             {eventDetails}
           </p>
