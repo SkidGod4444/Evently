@@ -14,10 +14,6 @@ export default function Home() {
   const defaultKeyHighlights = ["Celebrate New Year's Eve", "Midnight fireworks display", "Exclusive nude gathering"];
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(defaultSelectedDate);
-  const [eventDetails, setEventDetails] = useState<string>(defaultEventDetails);
-  const [showKeyHighlights, setShowKeyHighlights] = useState(true);
-  const [todoItems, setTodoItems] = useState<string[]>(defaultTodoItems);
-  const [keyHighlights, setKeyHighlights] = useState<string[]>(defaultKeyHighlights);
 
   // Timer calculation
   const [days, setDays] = useState(0);
@@ -128,16 +124,16 @@ export default function Home() {
       <div className="mt-10 w-full max-w-2xl p-6">
         <h2 className="text-3xl mb-2 text-white/30 font-bold">Event Details</h2>
         <p className="mb-6 text-white/50 font-semibold text-sm">
-          {eventDetails}
+          {defaultEventDetails}
         </p>
 
-        {showKeyHighlights ? (
+        {defaultKeyHighlights ? (
           <div>
             <h3 className="text-3xl mb-2 text-white/30 font-bold">
               Key Highlights
             </h3>
             <ul className="list-disc list-inside text-white/50 font-semibold text-sm">
-              {keyHighlights.map((highlight, index) => (
+              {defaultKeyHighlights.map((highlight, index) => (
                 <li key={index}>{highlight}</li>
               ))}
             </ul>
@@ -146,7 +142,7 @@ export default function Home() {
           <div>
             <h3 className="text-3xl font-bold mb-2 text-white/30">Todo List</h3>
             <ul className="list-disc list-inside text-white/50 font-semibold text-sm">
-              {todoItems.map((todo, index) => (
+              {defaultTodoItems.map((todo, index) => (
                 <li key={index}>{todo}</li>
               ))}
             </ul>
