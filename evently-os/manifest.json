@@ -1,0 +1,17 @@
+{
+  "name": "evently os",
+  "description": "evently os — audit your events in each tab and in realtime",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "icons": {
+    "48": "assets/evently-logo.jpeg",
+    "128": "assets/evently-logo.jpeg"
+  },
+  "permissions": ["tabs"],
+  "background": {
+    "service_worker": "evently.js"
+  },
+  "chrome_url_overrides": {
+    "newtab": "tab_override.html"
+  }
+}
